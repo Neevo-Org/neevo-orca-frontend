@@ -1,7 +1,18 @@
 # Neevo Orca
 
-**Neevo Orca** is an *AI orchestration platform* that gives users precise control over how AI agents are created, configured, connected, executed, and monitored.
+Neevo Orca is an AI orchestration platform that gives users precise control over how AI agents are created, configured, connected, executed, and monitored.
 
-The goal is not just to “chat with agents,” but to define how **agents** think, what **tools** they can use, when they can act, what data they can access, and how they collaborate with other agents.
+## Frontend platform baseline
 
-Neevo Orca should act as the control layer between **users**, **AI models**, external **tools**, **APIs**, data **sources**, and automated **workflows**.
+This repository now contains the initial frontend application scaffold for Neevo Orca:
+- React + Vite + TypeScript
+- client-side rendering by default
+- React Router for application navigation
+- TanStack Query for server-state management
+- an app-shell-first folder structure for follow-up product surfaces
+
+## Getting started
+
+1. Install dependencies: `npm install`
+2. Start the dev server: `npm run dev`
+3. Build for production: `npm run build`
