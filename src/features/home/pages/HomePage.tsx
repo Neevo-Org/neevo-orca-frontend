@@ -1,3 +1,5 @@
+import { Badge, Button, Card, CardBody, CardHeader } from 'neevo-ui';
+
 const architectureDecisions = [
   {
     title: 'Application scaffold',
@@ -17,11 +19,15 @@ const architectureDecisions = [
   },
   {
     title: 'Forms and validation',
-    detail: 'React Hook Form and Zod are reserved as the default pair for future form-heavy flows.',
+    detail: 'React Hook Form and Zod are installed as the default pair for form state and validation.',
   },
   {
     title: 'UI foundation',
-    detail: 'neevo-ui remains the intended styling and component system once the package is introduced into the repo.',
+    detail: 'neevo-ui is installed as the shared styling and component foundation for follow-up UI work.',
+  },
+  {
+    title: 'Global state',
+    detail: 'No major global state library is included by default; feature state should stay local until the app proves otherwise.',
   },
 ];
 
@@ -45,6 +51,22 @@ export function HomePage() {
           </article>
         ))}
       </div>
+
+      <Card>
+        <CardHeader>
+          <div className="library-card-header">
+            <h3>Issue 6 baseline</h3>
+            <Badge>Installed</Badge>
+          </div>
+        </CardHeader>
+        <CardBody>
+          <p>
+            The chosen frontend stack is now present in the repo: `neevo-ui`, React Router, TanStack Query,
+            React Hook Form, and Zod.
+          </p>
+          <Button type="button">Neevo UI ready for follow-up tickets</Button>
+        </CardBody>
+      </Card>
     </section>
   );
 }

@@ -120,6 +120,13 @@ p {
   margin-bottom: 0.75rem;
 }
 
+.library-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 @media (max-width: 900px) {
   .app-shell {
     grid-template-columns: 1fr;

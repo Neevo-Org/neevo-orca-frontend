@@ -5,10 +5,13 @@ Neevo Orca is an AI orchestration platform that gives users precise control over
 ## Frontend platform baseline
 
 This repository now contains the initial frontend application scaffold for Neevo Orca:
-- React + Vite + TypeScript
+- React 19 + Vite + TypeScript
 - client-side rendering by default
+- `neevo-ui` as the shared UI foundation
 - React Router for application navigation
 - TanStack Query for server-state management
+- React Hook Form + Zod as the default forms and validation pair
+- no major global state library by default
 - an app-shell-first folder structure for follow-up product surfaces
 
 ## Getting started
