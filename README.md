@@ -14,6 +14,10 @@ This repository now contains the initial frontend application scaffold for Neevo
 - no major global state library by default
 - an app-shell-first folder structure for follow-up product surfaces
 
+## Development docs
+
+- Structural and development guidance: [`docs/developers/Structure.md`](docs/developers/Structure.md)
+
 ## Getting started
 
 1. Install dependencies: `npm install`
