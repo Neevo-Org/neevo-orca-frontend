@@ -94,11 +94,15 @@ A module may contain subfolders such as:
 ```text
 modules/
   chat/
+    domain/
+    services/
+    data/
+      api/
+      mocks/
+    queries/
     routes/
     pages/
     components/
-    api/
-    model/
     hooks/
     utils/
 ```
@@ -110,6 +114,8 @@ Module code should prefer local ownership:
 - module API hooks stay with the module
 - module validation schemas stay with the module
 - module view components stay with the module
+- module service contracts stay with the module
+- mock and API implementations stay behind the same module-owned contract
 
 Move code to `shared` only after it proves reusable across modules.
 
@@ -164,6 +170,27 @@ Use the lightest state model that solves the real problem.
 - local UI state should stay local until there is a proven need to lift it
 
 Do not introduce a global client-state library without a concrete cross-cutting need.
+
+## Data mode rules
+
+Frontend feature work should support two development data modes:
+
+- `mock`
+- `api`
+
+`mock` should be the default mode for early frontend development. `api` should remain available as an opt-in mode for integration and verification.
+
+These are not two separate frontend architectures. They are two interchangeable implementations of the same module-owned contracts.
+
+Each module should keep:
+
+- domain types in the module
+- service contracts in the module
+- mock implementations in the module
+- API implementations in the module
+- query hooks in the module
+
+UI components must not know whether they are using mock data or API data.
 
 ## Reuse rules
 

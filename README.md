@@ -17,9 +17,11 @@ This repository now contains the initial frontend application scaffold for Neevo
 ## Development docs
 
 - Structural and development guidance: [`docs/developers/Structure.md`](docs/developers/Structure.md)
+- Development data mode guidance: [`docs/developers/Data Modes.md`](<docs/developers/Data Modes.md>)
 
 ## Getting started
 
 1. Install dependencies: `npm install`
-2. Start the dev server: `npm run dev`
-3. Build for production: `npm run build`
+2. Copy `.env.example` to `.env` and set `VITE_DATA_MODE` as needed
+3. Start the dev server: `npm run dev`
+4. Build for production: `npm run build`
