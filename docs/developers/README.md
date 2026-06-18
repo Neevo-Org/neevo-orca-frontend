@@ -8,4 +8,5 @@ Page file names should use capitalization intended for display.
 
 Current pages:
 
+- [`Data Modes.md`](<Data Modes.md>): mock and API development mode strategy
 - [`Structure.md`](Structure.md): frontend structure, ownership, and development rules
