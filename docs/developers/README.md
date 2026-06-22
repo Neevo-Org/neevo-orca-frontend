@@ -8,5 +8,6 @@ Page file names should use capitalization intended for display.
 
 Current pages:
 
+- [`Rules.md`](Rules.md): canonical development rules for structure, routing, UI, and workflow
 - [`Data Modes.md`](<Data Modes.md>): mock and API development mode strategy
 - [`Structure.md`](Structure.md): frontend structure, ownership, and development rules

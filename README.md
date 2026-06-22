@@ -16,6 +16,7 @@ This repository now contains the initial frontend application scaffold for Neevo
 
 ## Development docs
 
+- Canonical developer guide: [`docs/developers/Rules.md`](docs/developers/Rules.md)
 - Structural and development guidance: [`docs/developers/Structure.md`](docs/developers/Structure.md)
 - Development data mode guidance: [`docs/developers/Data Modes.md`](<docs/developers/Data Modes.md>)
 

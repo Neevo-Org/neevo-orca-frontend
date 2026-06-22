@@ -1,5 +1,5 @@
-import type { ChatOverview } from './types';
+import type { ChatWorkspace } from './types';
 
-export interface ChatOverviewService {
-  getOverview(): Promise<ChatOverview>;
+export interface ChatWorkspaceService {
+  getWorkspace(): Promise<ChatWorkspace>;
 }

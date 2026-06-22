@@ -1,33 +1,80 @@
 import { httpGet } from '../../../../shared/http/client';
-import type { ChatOverviewService } from '../../domain/contracts';
-import type { ChatOverview } from '../../domain/types';
+import type { ChatWorkspaceService } from '../../domain/contracts';
+import type { ChatAgent, ChatConversation, ChatWorkspace } from '../../domain/types';
 
-type ChatOverviewApiResponse = Partial<{
-  summary: string;
-  highlights: string[];
-  primaryAction: string;
+type ChatAgentApiResponse = Partial<{
+  id: string;
+  name: string;
+  role: string;
+  description: string;
+  isDefault: boolean;
 }>;
 
-function normalizeChatOverview(response: ChatOverviewApiResponse): ChatOverview {
+type ChatMessageApiResponse = Partial<{
+  id: string;
+  author: 'agent' | 'user' | 'system';
+  body: string;
+  timestamp: string;
+}>;
+
+type ChatConversationApiResponse = Partial<{
+  agentId: string;
+  summary: string;
+  messages: ChatMessageApiResponse[];
+}>;
+
+type ChatWorkspaceApiResponse = Partial<{
+  agents: ChatAgentApiResponse[];
+  conversations: ChatConversationApiResponse[];
+  composerPlaceholder: string;
+}>;
+
+function normalizeAgent(agent: ChatAgentApiResponse, index: number): ChatAgent {
   return {
-    mode: 'api',
-    summary:
-      response.summary ??
-      'Chat is running in API mode so the frontend can verify real backend integration and payload contracts.',
-    primaryAction: response.primaryAction ?? 'Verify chat API integration',
-    highlights:
-      response.highlights ??
-      [
-        'API mode is opt-in and should be used for integration checks.',
-        'Backend payload normalization should stay inside the API adapter layer.',
-        'UI components should stay unaware of the transport source.',
-      ],
+    id: agent.id ?? `agent-${index + 1}`,
+    name: agent.name ?? `Agent ${index + 1}`,
+    role: agent.role ?? 'Available agent',
+    status: agent.isDefault ? 'default' : 'available',
+    description: agent.description ?? 'This agent is available for direct conversation.',
   };
 }
 
-export const chatApiService: ChatOverviewService = {
-  async getOverview() {
-    const response = await httpGet<ChatOverviewApiResponse>('/chat/overview');
-    return normalizeChatOverview(response);
+function normalizeConversation(conversation: ChatConversationApiResponse, index: number): ChatConversation {
+  return {
+    agentId: conversation.agentId ?? `agent-${index + 1}`,
+    summary: conversation.summary ?? 'Direct conversation thread.',
+    messages:
+      conversation.messages?.map((message, messageIndex) => ({
+        id: message.id ?? `${conversation.agentId ?? `agent-${index + 1}`}-${messageIndex + 1}`,
+        author: message.author ?? 'agent',
+        body: message.body ?? 'Message unavailable.',
+        timestamp: message.timestamp ?? '--:--',
+      })) ?? [],
+  };
+}
+
+function normalizeChatWorkspace(response: ChatWorkspaceApiResponse): ChatWorkspace {
+  return {
+    mode: 'api',
+    composerPlaceholder:
+      response.composerPlaceholder ?? 'Send a message to the selected agent using the live backend integration...',
+    agents:
+      response.agents?.map(normalizeAgent) ?? [
+        {
+          id: 'orchestrator',
+          name: 'Orchestrator',
+          role: 'Default primary agent',
+          status: 'default',
+          description: 'Default direct conversation agent.',
+        },
+      ],
+    conversations: response.conversations?.map(normalizeConversation) ?? [],
+  };
+}
+
+export const chatApiService: ChatWorkspaceService = {
+  async getWorkspace() {
+    const response = await httpGet<ChatWorkspaceApiResponse>('/chat/workspace');
+    return normalizeChatWorkspace(response);
   },
 };

@@ -1,4 +1,4 @@
-import { Badge, Button, Card, CardBody, CardHeader, Column, EmptyState, Page, Text } from 'neevo-ui';
+import { Badge, Button, Card, CardBody, CardHeader, Column, Container, EmptyState, Text } from 'neevo-ui';
 
 type SectionPageProps = {
   badge: string;
@@ -10,7 +10,7 @@ type SectionPageProps = {
 
 export function SectionPage({ badge, title, summary, primaryAction, highlights }: SectionPageProps) {
   return (
-    <Page>
+    <Container>
       <Column gap={20}>
         <Card>
           <CardHeader>
@@ -42,6 +42,6 @@ export function SectionPage({ badge, title, summary, primaryAction, highlights }
           description="This page currently exists to reflect the agreed navigation model while the product-specific UX tickets are still in analysis."
         />
       </Column>
-    </Page>
+    </Container>
   );
 }

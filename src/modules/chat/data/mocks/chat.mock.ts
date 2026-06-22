@@ -1,9 +1,9 @@
-import type { ChatOverviewService } from '../../domain/contracts';
+import type { ChatWorkspaceService } from '../../domain/contracts';
 
-import { chatOverviewScenario } from './chat.scenarios';
+import { chatWorkspaceScenario } from './chat.scenarios';
 
-export const chatMockService: ChatOverviewService = {
-  async getOverview() {
-    return chatOverviewScenario;
+export const chatMockService: ChatWorkspaceService = {
+  async getWorkspace() {
+    return chatWorkspaceScenario;
   },
 };
